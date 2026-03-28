@@ -2,6 +2,7 @@
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 	import { isLoggedIn, isValidated, authUser } from '$lib/stores/auth';
+	import { reveal } from '$lib/actions/reveal';
 
 	let loading = $state(false);
 	let error = $state('');
@@ -52,7 +53,9 @@
 	<title>Pricing | Ypero</title>
 </svelte:head>
 
-<section class="max-w-7xl mx-auto px-6 pt-16 pb-24 text-center">
+<section class="relative max-w-7xl mx-auto px-6 pt-16 pb-24 text-center overflow-hidden">
+	<div class="float-orb float-orb-green w-[400px] h-[400px] -top-20 right-[-150px] opacity-50"></div>
+	<div class="float-orb float-orb-purple w-[350px] h-[350px] bottom-0 left-[-100px] opacity-40"></div>
 	<!-- Post-payment banners -->
 	{#if paymentSuccess || $isValidated}
 		<div class="max-w-lg mx-auto mb-8 bg-primary/10 rounded-xl p-5 flex items-center gap-4">
@@ -101,46 +104,63 @@
 	</p>
 
 	<!-- Pricing card -->
-	<div class="max-w-lg mx-auto mt-12 rounded-2xl p-8 md:p-10 bg-gradient-to-b from-surface-container-high to-surface-container-low ghost-border">
+	<div class="max-w-lg mx-auto mt-12 rounded-2xl p-8 md:p-10 bg-gradient-to-b reveal-scale" use:reveal style=""  from-surface-container-high to-surface-container-low ghost-border">
 		<p class="text-xs uppercase tracking-[0.3em] text-on-surface-variant font-label">
 			Account Validation
 		</p>
 		<p class="font-headline text-6xl font-bold mt-2">$49.95</p>
 		<p class="text-sm uppercase tracking-widest text-primary font-bold mt-2">One-time Payment · Lifetime Access</p>
 
+		<!-- CTA (above features) -->
+		<div class="mt-8">
+			{#if $isValidated}
+				<a
+					href="/profile"
+					class="w-full bg-surface-container-highest text-primary py-3.5 rounded-xl font-bold text-lg flex items-center justify-center gap-2"
+				>
+					<span class="material-symbols-outlined">verified</span>
+					Account Validated — Go to Profile
+				</a>
+			{:else}
+				<button
+					onclick={handlePurchase}
+					disabled={loading}
+					class="w-full bg-primary text-on-primary py-3.5 rounded-xl font-bold active:scale-[0.98] transition-all text-lg disabled:opacity-50"
+				>
+					{#if loading}
+						<span class="flex items-center justify-center gap-2">
+							<span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>
+							Redirecting to payment...
+						</span>
+					{:else if !$isLoggedIn}
+						Create Account & Pay — $49.95
+					{:else}
+						Validate Account — $49.95
+					{/if}
+				</button>
+			{/if}
+
+			<div class="flex items-center justify-center gap-4 mt-4 text-xs text-on-surface-variant">
+				<span class="flex items-center gap-1">
+					<span class="material-symbols-outlined text-sm">lock</span>
+					Secure Checkout
+				</span>
+				<span class="flex items-center gap-1">
+					<span class="material-symbols-outlined text-sm">credit_card</span>
+					Visa, Mastercard, Amex
+				</span>
+				<span class="flex items-center gap-1">
+					<span class="material-symbols-outlined text-sm">block</span>
+					No Subscription
+				</span>
+			</div>
+		</div>
+
 		<!-- Separator -->
 		<div class="w-full h-px bg-outline-variant/15 my-6"></div>
 
-		<!-- CTA -->
-		{#if $isValidated}
-			<a
-				href="/profile"
-				class="w-full bg-surface-container-highest text-primary py-3.5 rounded-xl font-bold text-lg flex items-center justify-center gap-2"
-			>
-				<span class="material-symbols-outlined">verified</span>
-				Account Validated — Go to Profile
-			</a>
-		{:else}
-			<button
-				onclick={handlePurchase}
-				disabled={loading}
-				class="w-full bg-primary text-on-primary py-3.5 rounded-xl font-bold active:scale-[0.98] transition-all text-lg disabled:opacity-50"
-			>
-				{#if loading}
-					<span class="flex items-center justify-center gap-2">
-						<span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>
-						Redirecting to payment...
-					</span>
-				{:else if !$isLoggedIn}
-					Create Account & Pay — $49.95
-				{:else}
-					Validate Account — $49.95
-				{/if}
-			</button>
-		{/if}
-		
-		<!-- What's included -->
-		<div class="mt-8 text-left space-y-4">
+		<!-- What's included (below CTA) -->
+		<div class="text-left space-y-4">
 			<p class="text-xs uppercase tracking-widest text-on-surface-variant font-label">What you get</p>
 
 			{#each [
@@ -160,21 +180,6 @@
 				</div>
 			{/each}
 		</div>
-			
-		<div class="flex items-center justify-center gap-4 mt-4 text-xs text-on-surface-variant">
-			<span class="flex items-center gap-1">
-				<span class="material-symbols-outlined text-sm">lock</span>
-				Secure Checkout
-			</span>
-			<span class="flex items-center gap-1">
-				<span class="material-symbols-outlined text-sm">credit_card</span>
-				Visa, Mastercard, Amex
-			</span>
-			<span class="flex items-center gap-1">
-				<span class="material-symbols-outlined text-sm">block</span>
-				No Subscription
-			</span>
-		</div>
 	</div>
 </section>
 
@@ -184,13 +189,13 @@
 		<p class="text-xs uppercase tracking-[0.3em] text-primary font-label text-center mb-3">How it works</p>
 		<h2 class="font-headline text-3xl font-bold text-center mb-12">Trading in 3 steps</h2>
 
-		<div class="grid md:grid-cols-3 gap-8">
+		<div class="grid md:grid-cols-3 gap-8 reveal-stagger" use:reveal>
 			{#each [
 				{ step: '01', icon: 'person_add', title: 'Create & Validate', desc: 'Sign up, verify your email, and complete the one-time payment. Takes under 2 minutes.' },
 				{ step: '02', icon: 'settings', title: 'Configure & Connect', desc: 'Download the bot, enter your Polymarket API keys, and set your preferred bet size ($5–$100).' },
 				{ step: '03', icon: 'rocket_launch', title: 'Launch & Profit', desc: 'Hit start. The bot executes trades every 15 minutes, 24/7. You monitor, it trades.' },
 			] as card}
-				<div class="text-center">
+				<div class="text-center reveal">
 					<span class="font-headline text-5xl font-bold text-surface-container-highest">{card.step}</span>
 					<div class="w-14 h-14 rounded-xl bg-surface-container-highest flex items-center justify-center mx-auto mt-4 mb-4">
 						<span class="material-symbols-outlined text-primary text-2xl">{card.icon}</span>
@@ -205,14 +210,14 @@
 
 <!-- Trust signals -->
 <section class="py-20">
-	<div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+	<div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 reveal-stagger" use:reveal>
 		{#each [
 			{ icon: 'trending_up', value: '85%', label: 'Historical Win Rate', desc: 'Verified across 150k+ predictions on Polymarket SOL markets.' },
 			{ icon: 'schedule', value: '15m', label: 'Execution Cycles', desc: 'Trades every 15-minute window. 96 opportunities per day.' },
 			{ icon: 'shield', value: '100%', label: 'Self-Custodial', desc: 'Your keys, your wallet, your funds. We never have access.' },
 			{ icon: 'groups', value: '1,240+', label: 'Active Traders', desc: 'Growing community of traders using our execution engine.' },
 		] as stat}
-			<div class="glass-card rounded-xl p-6 text-center">
+			<div class="glass-card rounded-xl p-6 text-center card-hover reveal">
 				<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center mx-auto mb-3">
 					<span class="material-symbols-outlined text-primary">{stat.icon}</span>
 				</div>

@@ -178,7 +178,7 @@
 				</div>
 				<h1 class="font-headline text-3xl font-bold mb-2">Verify Your Email</h1>
 				<p class="text-on-surface-variant text-sm">
-					We sent a 8-digit code to
+					We sent an 8-digit code to
 					<span class="text-on-surface font-semibold">{email}</span>
 				</p>
 			</div>

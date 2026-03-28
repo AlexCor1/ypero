@@ -153,3 +153,176 @@
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 }
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* Scroll-triggered reveal: elements start invisible, animate in when .visible is added */
+.reveal {
+	opacity: 0;
+	transform: translateY(24px);
+	transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+	            transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Stagger delays for grid children */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
+
+/* Slide from left */
+.reveal-left {
+	opacity: 0;
+	transform: translateX(-32px);
+	transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+	            transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Slide from right */
+.reveal-right {
+	opacity: 0;
+	transform: translateX(32px);
+	transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+	            transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Scale up from center */
+.reveal-scale {
+	opacity: 0;
+	transform: scale(0.92);
+	transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+	            transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale.visible {
+	opacity: 1;
+	transform: scale(1);
+}
+
+/* Floating ambient orb */
+.float-orb {
+	position: absolute;
+	border-radius: 50%;
+	filter: blur(80px);
+	pointer-events: none;
+	will-change: transform;
+}
+.float-orb-green {
+	background: radial-gradient(circle, rgba(52, 254, 160, 0.12) 0%, transparent 70%);
+	animation: float-drift 12s ease-in-out infinite;
+}
+.float-orb-purple {
+	background: radial-gradient(circle, rgba(185, 132, 255, 0.10) 0%, transparent 70%);
+	animation: float-drift 15s ease-in-out infinite reverse;
+}
+
+@keyframes float-drift {
+	0%, 100% { transform: translate(0, 0) scale(1); }
+	25% { transform: translate(30px, -20px) scale(1.05); }
+	50% { transform: translate(-15px, 15px) scale(0.95); }
+	75% { transform: translate(20px, 25px) scale(1.02); }
+}
+
+/* Card hover lift */
+.card-hover {
+	transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+	background-color: rgba(44, 44, 44, 0.6);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 30px rgba(52, 254, 160, 0.04);
+}
+
+/* Kinetic gradient animation for hero text */
+.kinetic-gradient-animated {
+	background: linear-gradient(90deg, #14f195 0%, #9945ff 50%, #14f195 100%);
+	background-size: 200% auto;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	animation: gradient-shift 4s linear infinite;
+}
+
+@keyframes gradient-shift {
+	0% { background-position: 0% center; }
+	100% { background-position: 200% center; }
+}
+
+/* Pulse ring on status dots */
+.pulse-ring {
+	position: relative;
+}
+.pulse-ring::after {
+	content: '';
+	position: absolute;
+	inset: -3px;
+	border-radius: 50%;
+	border: 1.5px solid currentColor;
+	opacity: 0;
+	animation: pulse-expand 2s ease-out infinite;
+}
+
+@keyframes pulse-expand {
+	0% { transform: scale(0.8); opacity: 0.6; }
+	100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Smooth counter/number animation */
+.num-animate {
+	display: inline-block;
+	animation: num-pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes num-pop {
+	0% { transform: scale(0.8) translateY(8px); opacity: 0; }
+	100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Range slider custom styling */
+input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 4px;
+	background: #262626;
+	border-radius: 2px;
+	outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: #34fea0;
+	cursor: pointer;
+	box-shadow: 0 0 12px rgba(52, 254, 160, 0.3);
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+	box-shadow: 0 0 20px rgba(52, 254, 160, 0.5);
+	transform: scale(1.15);
+}
+input[type="range"]::-moz-range-thumb {
+	width: 18px;
+	height: 18px;
+	border: none;
+	border-radius: 50%;
+	background: #34fea0;
+	cursor: pointer;
+	box-shadow: 0 0 12px rgba(52, 254, 160, 0.3);
+}
