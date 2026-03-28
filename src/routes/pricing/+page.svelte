@@ -108,28 +108,6 @@
 		<p class="font-headline text-6xl font-bold mt-2">$49.95</p>
 		<p class="text-sm uppercase tracking-widest text-primary font-bold mt-2">One-time Payment · Lifetime Access</p>
 
-		<!-- What's included -->
-		<div class="mt-8 text-left space-y-4">
-			<p class="text-xs uppercase tracking-widest text-on-surface-variant font-label">What you get</p>
-
-			{#each [
-				{ icon: 'download', title: 'Full Bot Application', desc: 'Desktop app for Windows, macOS & Linux. Download instantly after payment.' },
-				{ icon: 'update', title: 'Lifetime Updates', desc: 'Every new version, strategy improvement, and market expansion — free, forever.' },
-				{ icon: 'key', title: 'Self-Custodial Trading', desc: 'The bot runs on your machine with your keys. We never touch your funds or private keys.' },
-				{ icon: 'speed', title: '15-Minute Execution Engine', desc: 'Algorithmically trades SOL up/down markets on Polymarket with an 85% historical win rate.' },
-				{ icon: 'notifications_active', title: '24/7 Telegram Alerts', desc: 'Real-time trade notifications, PnL updates, and risk alerts sent to your Telegram.' },
-				{ icon: 'support_agent', title: 'Premium Discord Support', desc: 'Direct access to the dev team. Setup help, strategy questions, troubleshooting.' },
-			] as item}
-				<div class="flex items-start gap-3 py-2">
-					<span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">{item.icon}</span>
-					<div>
-						<p class="text-sm font-semibold">{item.title}</p>
-						<p class="text-xs text-on-surface-variant mt-0.5 leading-relaxed">{item.desc}</p>
-					</div>
-				</div>
-			{/each}
-		</div>
-
 		<!-- Separator -->
 		<div class="w-full h-px bg-outline-variant/15 my-6"></div>
 
@@ -160,7 +138,29 @@
 				{/if}
 			</button>
 		{/if}
+		
+		<!-- What's included -->
+		<div class="mt-8 text-left space-y-4">
+			<p class="text-xs uppercase tracking-widest text-on-surface-variant font-label">What you get</p>
 
+			{#each [
+				{ icon: 'download', title: 'Full Bot Application', desc: 'Desktop app for Windows, macOS & Linux. Download instantly after payment.' },
+				{ icon: 'update', title: 'Lifetime Updates', desc: 'Every new version, strategy improvement, and market expansion — free, forever.' },
+				{ icon: 'key', title: 'Self-Custodial Trading', desc: 'The bot runs on your machine with your keys. We never touch your funds or private keys.' },
+				{ icon: 'speed', title: '15-Minute Execution Engine', desc: 'Algorithmically trades SOL up/down markets on Polymarket with an 85% historical win rate.' },
+				{ icon: 'notifications_active', title: '24/7 Telegram Alerts', desc: 'Real-time trade notifications, PnL updates, and risk alerts sent to your Telegram.' },
+				{ icon: 'support_agent', title: 'Premium Discord Support', desc: 'Direct access to the dev team. Setup help, strategy questions, troubleshooting.' },
+			] as item}
+				<div class="flex items-start gap-3 py-2">
+					<span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">{item.icon}</span>
+					<div>
+						<p class="text-sm font-semibold">{item.title}</p>
+						<p class="text-xs text-on-surface-variant mt-0.5 leading-relaxed">{item.desc}</p>
+					</div>
+				</div>
+			{/each}
+		</div>
+			
 		<div class="flex items-center justify-center gap-4 mt-4 text-xs text-on-surface-variant">
 			<span class="flex items-center gap-1">
 				<span class="material-symbols-outlined text-sm">lock</span>

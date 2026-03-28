@@ -178,7 +178,7 @@
 				</div>
 				<h1 class="font-headline text-3xl font-bold mb-2">Verify Your Email</h1>
 				<p class="text-on-surface-variant text-sm">
-					We sent a 6-digit code to
+					We sent a 8-digit code to
 					<span class="text-on-surface font-semibold">{email}</span>
 				</p>
 			</div>
@@ -198,16 +198,16 @@
 						id="otp-code"
 						type="text"
 						inputmode="numeric"
-						maxlength="6"
+						maxlength="8"
 						bind:value={otpCode}
-						placeholder="000000"
+						placeholder="00000000"
 						class="w-full bg-surface-container-highest rounded-lg px-4 py-4 text-center text-2xl font-headline font-bold tracking-[0.5em] text-on-surface outline-none focus:bg-surface-bright transition-colors placeholder:text-outline placeholder:tracking-[0.5em]"
 					/>
 				</div>
 
 				<button
 					onclick={handleVerify}
-					disabled={loading || otpCode.length < 6}
+					disabled={loading || otpCode.length < 8}
 					class="w-full bg-primary text-on-primary py-3 rounded-xl font-bold active:scale-[0.98] transition-all disabled:opacity-50"
 				>
 					{loading ? 'Verifying...' : 'Verify Email'}
