@@ -104,41 +104,41 @@
 	</p>
 
 	<!-- Pricing card -->
-	<div class="max-w-lg mx-auto mt-12 rounded-2xl p-8 md:p-10 bg-gradient-to-b reveal-scale" use:reveal style=""  from-surface-container-high to-surface-container-low ghost-border">
-		<p class="text-xs uppercase tracking-[0.3em] text-on-surface-variant font-label">
-			Account Validation
-		</p>
-		<p class="font-headline text-6xl font-bold mt-2">$49.95</p>
-		<p class="text-sm uppercase tracking-widest text-primary font-bold mt-2">One-time Payment · Lifetime Access</p>
+	<div class="max-w-lg mx-auto mt-12 rounded-2xl p-8 md:p-10 bg-linear-to-b from-surface-container-high to-surface-container-low ghost-border reveal-scale" use:reveal>
+	<p class="text-xs uppercase tracking-[0.3em] text-on-surface-variant font-label">
+		Account Validation
+	</p>
+	<p class="font-headline text-6xl font-bold mt-2">$49.95</p>
+	<p class="text-sm uppercase tracking-widest text-primary font-bold mt-2">One-time Payment · Lifetime Access</p>
 
-		<!-- CTA (above features) -->
-		<div class="mt-8">
-			{#if $isValidated}
-				<a
-					href="/profile"
-					class="w-full bg-surface-container-highest text-primary py-3.5 rounded-xl font-bold text-lg flex items-center justify-center gap-2"
-				>
-					<span class="material-symbols-outlined">verified</span>
+	<!-- CTA (above features) -->
+	<div class="mt-8">
+		{#if $isValidated}
+			<a
+				href="/profile"
+				class="w-full bg-surface-container-highest text-primary py-3.5 rounded-xl font-bold text-lg flex items-center justify-center gap-2"
+			>
+				<span class="material-symbols-outlined">verified</span>
 					Account Validated — Go to Profile
-				</a>
-			{:else}
-				<button
-					onclick={handlePurchase}
-					disabled={loading}
-					class="w-full bg-primary text-on-primary py-3.5 rounded-xl font-bold active:scale-[0.98] transition-all text-lg disabled:opacity-50"
+			</a>
+		{:else}
+			<button
+				onclick={handlePurchase}
+				disabled={loading}
+				class="w-full bg-primary text-on-primary py-3.5 rounded-xl font-bold active:scale-[0.98] transition-all text-lg disabled:opacity-50"
 				>
-					{#if loading}
-						<span class="flex items-center justify-center gap-2">
-							<span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>
-							Redirecting to payment...
-						</span>
-					{:else if !$isLoggedIn}
-						Create Account & Pay — $49.95
-					{:else}
-						Validate Account — $49.95
-					{/if}
-				</button>
-			{/if}
+				{#if loading}
+					<span class="flex items-center justify-center gap-2">
+						<span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>
+						Redirecting to payment...
+					</span>
+				{:else if !$isLoggedIn}
+					Create Account & Pay — $49.95
+				{:else}
+					Validate Account — $49.95
+				{/if}
+			</button>
+		{/if}
 
 			<div class="flex items-center justify-center gap-4 mt-4 text-xs text-on-surface-variant">
 				<span class="flex items-center gap-1">
@@ -257,7 +257,7 @@
 
 <!-- Final CTA -->
 <section class="max-w-4xl mx-auto px-6 pb-24">
-	<div class="rounded-2xl bg-gradient-to-br from-surface-container-high to-surface-container-low p-10 md:p-14 text-center ghost-border">
+	<div class="rounded-2xl bg-linear-to-br from-surface-container-high to-surface-container-low p-10 md:p-14 text-center ghost-border">
 		<h2 class="font-headline text-3xl md:text-4xl font-bold">Still on the fence?</h2>
 		<p class="mt-4 text-on-surface-variant max-w-lg mx-auto">
 			Try the simulator first. See projected returns for your bet size, risk-free. 
