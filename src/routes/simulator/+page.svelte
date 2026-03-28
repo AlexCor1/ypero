@@ -6,12 +6,6 @@
 
 	let result = $derived(calculateProjection(betSize));
 
-	// ROI: monthly earnings relative to total monthly wagered
-	// At 64 trades/day * 28 days = 1792 trades, each risking betSize
-	let roiPct = $derived(
-		Math.round((result.monthlyProjection / (betSize * 64 * 28)) * 100 * 10) / 10
-	);
-
 	function formatCurrency(n: number): string {
 		return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n);
 	}
@@ -142,7 +136,7 @@
 			<p class="font-headline text-3xl font-bold mt-1">{formatCurrency(result.dailyAverage)}</p>
 			<p class="text-xs text-primary mt-2 flex items-center gap-1">
 				<span class="material-symbols-outlined text-sm">trending_up</span>
-				+{roiPct}% return on wagered
+				+80% return on wagered
 			</p>
 		</div>
 		<div class="glass-card rounded-xl p-6">
