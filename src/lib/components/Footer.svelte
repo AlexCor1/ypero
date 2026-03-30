@@ -11,7 +11,7 @@
 					Ypero
 				</span>
 				<p class="mt-3 text-sm text-on-surface-variant leading-relaxed">
-					The ultimate algorithmic companion for Solana-based Polymarket participants. Speed,
+					The ultimate bot for Solana traders on Polymarket. Speed,
 					precision, and trust.
 				</p>
 			</div>
@@ -22,9 +22,9 @@
 					Community
 				</h4>
 				<div class="flex flex-col gap-2.5">
-					<a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">X</a>
-					<a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Telegram</a>
-					<a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Discord</a>
+					<a href="/" class="text-sm text-on-surface-variant hover:text-primary transition-colors">X</a>
+					<a href="/" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Telegram</a>
+					<a href="/" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Discord</a>
 				</div>
 			</div>
 

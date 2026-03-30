@@ -33,8 +33,7 @@
 			</h1>
 
 			<p class="mt-6 text-on-surface-variant text-lg max-w-lg leading-relaxed">
-				The easiest way to trade Solana on Polymarket. Our algorithmic bot executes high-precision
-				trades in 15-minute cycles, turning volatility into consistent gains.
+				The easiest way to trade Solana on Polymarket. Our bot exploits the confidence of the market, turning volatility into consistent gains.
 			</p>
 
 			<div class="flex items-center gap-4 mt-8">
@@ -120,8 +119,8 @@
 			Dominate the Market Today.
 		</h2>
 		<p class="mt-4 text-on-surface-variant text-lg">
-			Join over 1,240+ professional traders using the most advanced algorithmic suite for Solana.
-			Setup complete in under 120 seconds.
+			Join over 1,240+ professional traders using the best Polymarket bot.
+			Setup complete in under 5 minutes.
 		</p>
 		<div class="flex items-center justify-center gap-4 mt-8">
 			<a
@@ -144,7 +143,7 @@
 			</span>
 			<span class="flex items-center gap-1.5">
 				<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-				Self-Custodial
+				Configurable & Scalable
 			</span>
 			<span class="flex items-center gap-1.5">
 				<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
@@ -160,15 +159,14 @@
 		<p class="text-xs uppercase tracking-[0.3em] text-primary font-label mb-3 reveal">Testimonials</p>
 		<h2 class="font-headline text-3xl md:text-4xl font-bold reveal">Trusted by the Community</h2>
 		<p class="mt-3 text-on-surface-variant max-w-lg mx-auto reveal">
-			Don't just take our word for it. Join a community of serious traders who've automated their
-			way to consistency.
+			Don't just take our word for it. Join a community of serious traders who profit each month.
 		</p>
 
 		<div class="grid md:grid-cols-3 gap-6 mt-12 text-left reveal-stagger">
 			{#each [
-				{ quote: '"The 15m strategy is a game changer. I\'ve seen consistent results since I started using it."', name: 'Jordan D.', role: 'Full-time Whale', color: 'primary' },
-				{ quote: '"Setup took minutes. I love that the bot executes through my own RPC so I\'m always in control."', name: 'Sarah K.', role: 'Algo Strategy Lead', color: 'secondary' },
-				{ quote: '"Finally, a tool that actually does what it says. It\'s been a great addition to my trading routine."', name: 'Marcus T.', role: 'Active Community Member', color: 'tertiary' },
+				{ quote: '"This bot is amazing, it\'s simple to use and so powerful ! I\'ve seen consistent results since I started using it."', name: 'Jordan D.', role: 'Crypto Enthusiast', color: 'primary' },
+				{ quote: '"I love that the bot is on my computer, I don\'t have to trust some online services with my credentials and I\'m always in full control."', name: 'Sarah K.', role: 'Beginner and already profitable', color: 'secondary' },
+				{ quote: '"Finally, a bot that\'s profitable. It\'s been a great and fun addition to my trading routine. If you\'re looking for some side-income, this will be perfect for you."', name: 'Marcus T.', role: 'Long time whale - Expert', color: 'tertiary' },
 			] as t}
 				<div class="glass-card rounded-xl p-6 card-hover reveal">
 					<p class="text-on-surface-variant text-sm leading-relaxed mb-4">{t.quote}</p>
@@ -191,11 +189,11 @@
 <section class="py-20" use:reveal>
 	<div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal-stagger">
 		<div class="reveal">
-			<span class="font-headline text-4xl font-bold num-animate">$4.2M</span>
+			<span class="font-headline text-4xl font-bold num-animate">$1.3M</span>
 			<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-2">Total Volume Traded</p>
 		</div>
 		<div class="reveal">
-			<span class="font-headline text-4xl font-bold text-primary num-animate" style="animation-delay: 100ms;">1,240</span>
+			<span class="font-headline text-4xl font-bold text-primary num-animate" style="animation-delay: 100ms;">631</span>
 			<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-2">Active Bot Instances</p>
 		</div>
 		<div class="reveal">

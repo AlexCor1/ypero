@@ -196,7 +196,7 @@
 				{ step: '03', icon: 'rocket_launch', title: 'Launch & Profit', desc: 'Hit start. The bot executes trades every 15 minutes, 24/7. You monitor, it trades.' },
 			] as card}
 				<div class="text-center reveal">
-					<span class="font-headline text-5xl font-bold text-surface-container-highest">{card.step}</span>
+					<span class="font-headline text-5xl font-bold text-on-surface-variant">{card.step}</span>
 					<div class="w-14 h-14 rounded-xl bg-surface-container-highest flex items-center justify-center mx-auto mt-4 mb-4">
 						<span class="material-symbols-outlined text-primary text-2xl">{card.icon}</span>
 					</div>
@@ -215,7 +215,7 @@
 			{ icon: 'trending_up', value: '85%', label: 'Historical Win Rate', desc: 'Verified across 150k+ predictions on Polymarket SOL markets.' },
 			{ icon: 'schedule', value: '15m', label: 'Execution Cycles', desc: 'Trades every 15-minute window. 96 opportunities per day.' },
 			{ icon: 'shield', value: '100%', label: 'Self-Custodial', desc: 'Your keys, your wallet, your funds. We never have access.' },
-			{ icon: 'groups', value: '1,240+', label: 'Active Traders', desc: 'Growing community of traders using our execution engine.' },
+			{ icon: 'groups', value: '600+', label: 'Active Traders', desc: 'Growing community of traders using our execution engine.' },
 		] as stat}
 			<div class="glass-card rounded-xl p-6 text-center card-hover reveal">
 				<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center mx-auto mb-3">
@@ -237,11 +237,10 @@
 		{ q: 'How fast can I set it up?', a: 'Under 5 minutes. Create an account, pay once, download the app, paste your Polymarket API keys, and hit start. The bot begins trading on the next 15-minute cycle.' },
 		{ q: 'Is my capital safe?', a: 'Yes. The bot runs 100% locally on your machine. It signs transactions with your private keys stored on your device. We never have access to your funds, wallet, or keys.' },
 		{ q: 'Which markets does the bot trade?', a: 'It trades the "Will SOL go up/down in 15 minutes?" prediction markets on Polymarket. These markets resolve every 15 minutes, giving the bot 96 trading opportunities per day.' },
-		{ q: 'How much can I make?', a: 'Results vary based on your bet size and market conditions. With a $10 bet size, typical monthly returns are around $500. With $50, closer to $2,500. Use our simulator to model projections.' },
-		{ q: 'What if I need help setting it up?', a: 'Our Discord has an active support channel. The dev team responds within hours. We also include a step-by-step setup guide with the download.' },
+		{ q: 'How much can I make?', a: 'Results vary based on your bet size and market conditions. With a $10 bet size, typical monthly returns are around $50. With $50, closer to $250. Use our simulator to model projections.' },
+		{ q: 'What if I need help setting it up?', a: 'Our Discord has an active support channel. The dev team responds quickly. We also include a step-by-step setup guide with the download.' },
 		{ q: 'Is there a subscription?', a: 'No. You pay $49.95 once and get lifetime access to the bot, all future updates, strategy improvements, and premium support. No monthly fees, no revenue share.' },
 		{ q: 'Do I need a VPN?', a: 'Polymarket is not available in all countries. If you are in a restricted region, you will need a VPN to an allowed country. The bot itself works from anywhere.' },
-		{ q: 'Can I run it on a VPS?', a: 'Yes. The bot is lightweight and runs on any Linux, Windows, or macOS machine. Many users run it on a $5/mo VPS for 24/7 uptime.' },
 	] as faq}
 		<details class="group bg-surface-container rounded-xl mb-3">
 			<summary class="flex justify-between items-center cursor-pointer p-5 text-sm font-semibold">

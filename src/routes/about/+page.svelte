@@ -24,8 +24,7 @@
 		<span class="kinetic-gradient">One Vision.</span>
 	</h1>
 	<p class="mt-6 text-on-surface-variant text-lg max-w-xl mx-auto leading-relaxed">
-		We're three friends and crypto lovers who built this tool to share our passion and expertise with
-		the community. Ypero was born from a simple need for better execution.
+		We're three friends and crypto lovers who built this tool to share our project and expertise. Ypero was born from a simple idea: how can I exploit the confidence of a market to earn extra income.
 	</p>
 </section>
 
@@ -33,9 +32,9 @@
 <section class="max-w-7xl mx-auto px-6 pb-20">
 	<div class="grid md:grid-cols-3 gap-6">
 		{#each [
-			{ name: 'Alex', role: 'Lead Architect', icon: 'code', desc: 'Tech enthusiast with a decade of distributed systems experience. Obsessed with high-throughput latency and on-chain efficiency.' },
-			{ name: 'Marcus', role: 'Quant Strategy', icon: 'bar_chart', desc: 'A math-crypto lover who believes in data over hype. Marcus leads the algorithmic engine powering Ypero.' },
-			{ name: 'Elena', role: 'Product Vision', icon: 'image', desc: 'User experience obsessive and crypto native. Elena ensures that our complex tools feel like second nature to the modern trader.' },
+			{ name: 'Alex', role: 'Lead Architect', icon: 'code', desc: 'Tech enthusiast. Loves the idea of combining tech and finance. Always looking for the new opportunity.' },
+			{ name: 'Marcus', role: 'Quant Strategy', icon: 'bar_chart', desc: 'A math-crypto lover who believes in data over hype. If you lose money, he\'s the guy to blame. Will beat you at Valorant ' },
+			{ name: 'Elena', role: 'Community Manager', icon: 'image', desc: 'She\'s the reason you found the website in the first place. Will try to take your money. Loves marketing a bit too much' },
 		] as member}
 			<div class="glass-card rounded-xl p-8">
 				<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center mb-6">
@@ -64,7 +63,7 @@
 		<div class="space-y-5">
 			{#each [
 				'We prioritize precision over flashy UI, delivering the metrics that actually matter for your PnL.',
-				'As crypto lovers, we understand the volatility. Our systems are built for 99.9% uptime.',
+				'Always available so you never miss an opportunity. The only bot beating Polymarket',
 				'Open transparency. We share our logic and data because we trust the community.',
 			] as point}
 				<div class="flex items-start gap-3">
@@ -143,7 +142,7 @@
 	<div>
 		<h2 class="font-headline text-2xl font-bold mb-3">Community</h2>
 		<p class="text-on-surface-variant text-sm mb-6">
-			Join our ecosystem and talk directly with the founders and other elite traders.
+			Come chat with the founders and other traders.
 		</p>
 
 		<div class="space-y-3">
