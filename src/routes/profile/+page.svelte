@@ -27,13 +27,13 @@
 		{
 			name: 'Windows',
 			icon: 'desktop_windows',
-			file: 'https://github.com/AlexCor1/ypero/releases/download/v1.0/ypero-windows.zip',
+			file: 'https://github.com/AlexCor1/ypero/releases/download/windows/ypero-windows.zip',
 			detail: 'Windows 10/11 · x64'
 		},
 		{
 			name: 'Linux',
 			icon: 'terminal',
-			file: 'https://github.com/AlexCor1/ypero/releases/download/v1.0/ypero-linux.zip',
+			file: 'https://github.com/AlexCor1/ypero/releases/download/linux/ypero-linux.zip',
 			detail: 'Debian (.deb) & RPM'
 		},
 		{
