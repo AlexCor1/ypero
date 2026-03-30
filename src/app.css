@@ -1,0 +1,328 @@
+@import 'tailwindcss';
+
+/* ============================================
+   DESIGN SYSTEM: The Obsidian Pulse
+   Color tokens from Kinetic Ledger theme
+   ============================================ */
+
+@theme {
+	/* ---- Surface hierarchy (dark to light) ---- */
+	--color-surface-container-lowest: #000000;
+	--color-surface: #0e0e0e;
+	--color-surface-dim: #0e0e0e;
+	--color-background: #0e0e0e;
+	--color-surface-container-low: #131313;
+	--color-surface-container: #1a1919;
+	--color-surface-container-high: #201f1f;
+	--color-surface-container-highest: #262626;
+	--color-surface-variant: #262626;
+	--color-surface-bright: #2c2c2c;
+	--color-surface-tint: #34fea0;
+
+	/* ---- Primary (Solana green) ---- */
+	--color-primary: #34fea0;
+	--color-primary-dim: #0cef93;
+	--color-primary-container: #0cef93;
+	--color-primary-fixed: #34fea0;
+	--color-primary-fixed-dim: #0cef93;
+	--color-on-primary: #005c36;
+	--color-on-primary-container: #00532f;
+	--color-on-primary-fixed: #004828;
+	--color-on-primary-fixed-variant: #00673d;
+	--color-inverse-primary: #006d40;
+
+	/* ---- Secondary (Solana purple) ---- */
+	--color-secondary: #b984ff;
+	--color-secondary-dim: #9742fd;
+	--color-secondary-container: #7d1be2;
+	--color-secondary-fixed: #e1c7ff;
+	--color-secondary-fixed-dim: #d6b6ff;
+	--color-on-secondary: #2f005f;
+	--color-on-secondary-container: #faf0ff;
+	--color-on-secondary-fixed: #4a008f;
+	--color-on-secondary-fixed-variant: #7000d3;
+
+	/* ---- Tertiary ---- */
+	--color-tertiary: #b1ffce;
+	--color-tertiary-dim: #00ef99;
+	--color-tertiary-container: #00ffa3;
+	--color-tertiary-fixed: #00ffa3;
+	--color-tertiary-fixed-dim: #00ef99;
+	--color-on-tertiary: #00663e;
+	--color-on-tertiary-container: #005c38;
+	--color-on-tertiary-fixed: #00472a;
+	--color-on-tertiary-fixed-variant: #00673f;
+
+	/* ---- Error ---- */
+	--color-error: #ff716c;
+	--color-error-dim: #d7383b;
+	--color-error-container: #9f0519;
+	--color-on-error: #490006;
+	--color-on-error-container: #ffa8a3;
+
+	/* ---- On-surface / outline ---- */
+	--color-on-surface: #ffffff;
+	--color-on-background: #ffffff;
+	--color-on-surface-variant: #adaaaa;
+	--color-outline: #767575;
+	--color-outline-variant: #484847;
+	--color-inverse-surface: #fcf9f8;
+	--color-inverse-on-surface: #565555;
+
+	/* ---- Typography ---- */
+	--font-headline: 'Space Grotesk', sans-serif;
+	--font-body: 'Inter', sans-serif;
+	--font-label: 'Inter', sans-serif;
+
+	/* ---- Border radius (from design system) ---- */
+	--radius-sm: 0.125rem;
+	--radius-md: 0.375rem;
+	--radius-lg: 0.5rem;
+	--radius-xl: 0.75rem;
+	--radius-full: 9999px;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Kinetic gradient text (primary → secondary, 45deg) */
+.kinetic-gradient {
+	background: linear-gradient(90deg, #14f195 0%, #9945ff 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+/* Glassmorphism overlay */
+.obsidian-glass {
+	background: rgba(38, 38, 38, 0.4);
+	backdrop-filter: blur(20px);
+	border: 1px solid rgba(72, 72, 71, 0.2);
+}
+
+/* Lighter glass variant */
+.glass-card {
+	background: rgba(255, 255, 255, 0.03);
+	backdrop-filter: blur(12px);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Ambient tinted shadow (design system: no standard drop-shadows) */
+.ambient-glow {
+	box-shadow: 0 8px 40px 0 rgba(52, 254, 160, 0.05);
+}
+
+/* Ghost border (accessibility fallback at 15% opacity) */
+.ghost-border {
+	border: 1px solid rgba(72, 72, 71, 0.15);
+}
+
+/* Subtle glow pulse behind data points */
+.pulse-glow {
+	box-shadow: 0 0 20px rgba(12, 239, 147, 0.15);
+}
+
+/* Chart line draw-in animation */
+.chart-path {
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 1000;
+	animation: dash 3s linear forwards;
+}
+
+@keyframes dash {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+/* Material Symbols config */
+.material-symbols-outlined {
+	font-variation-settings:
+		'FILL' 0,
+		'wght' 400,
+		'GRAD' 0,
+		'opsz' 24;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+/* Scroll-triggered reveal: elements start invisible, animate in when .visible is added */
+.reveal {
+	opacity: 0;
+	transform: translateY(24px);
+	transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+	            transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Stagger delays for grid children */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
+
+/* Slide from left */
+.reveal-left {
+	opacity: 0;
+	transform: translateX(-32px);
+	transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+	            transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Slide from right */
+.reveal-right {
+	opacity: 0;
+	transform: translateX(32px);
+	transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+	            transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Scale up from center */
+.reveal-scale {
+	opacity: 0;
+	transform: scale(0.92);
+	transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+	            transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale.visible {
+	opacity: 1;
+	transform: scale(1);
+}
+
+/* Floating ambient orb */
+.float-orb {
+	position: absolute;
+	border-radius: 50%;
+	filter: blur(80px);
+	pointer-events: none;
+	will-change: transform;
+}
+.float-orb-green {
+	background: radial-gradient(circle, rgba(52, 254, 160, 0.12) 0%, transparent 70%);
+	animation: float-drift 12s ease-in-out infinite;
+}
+.float-orb-purple {
+	background: radial-gradient(circle, rgba(185, 132, 255, 0.10) 0%, transparent 70%);
+	animation: float-drift 15s ease-in-out infinite reverse;
+}
+
+@keyframes float-drift {
+	0%, 100% { transform: translate(0, 0) scale(1); }
+	25% { transform: translate(30px, -20px) scale(1.05); }
+	50% { transform: translate(-15px, 15px) scale(0.95); }
+	75% { transform: translate(20px, 25px) scale(1.02); }
+}
+
+/* Card hover lift */
+.card-hover {
+	transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+	background-color: rgba(44, 44, 44, 0.6);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 30px rgba(52, 254, 160, 0.04);
+}
+
+/* Kinetic gradient animation for hero text */
+.kinetic-gradient-animated {
+	background: linear-gradient(90deg, #14f195 0%, #9945ff 50%, #14f195 100%);
+	background-size: 200% auto;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	animation: gradient-shift 4s linear infinite;
+}
+
+@keyframes gradient-shift {
+	0% { background-position: 0% center; }
+	100% { background-position: 200% center; }
+}
+
+/* Pulse ring on status dots */
+.pulse-ring {
+	position: relative;
+}
+.pulse-ring::after {
+	content: '';
+	position: absolute;
+	inset: -3px;
+	border-radius: 50%;
+	border: 1.5px solid currentColor;
+	opacity: 0;
+	animation: pulse-expand 2s ease-out infinite;
+}
+
+@keyframes pulse-expand {
+	0% { transform: scale(0.8); opacity: 0.6; }
+	100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Smooth counter/number animation */
+.num-animate {
+	display: inline-block;
+	animation: num-pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes num-pop {
+	0% { transform: scale(0.8) translateY(8px); opacity: 0; }
+	100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Range slider custom styling */
+input[type="range"] {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 4px;
+	background: #262626;
+	border-radius: 2px;
+	outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: #34fea0;
+	cursor: pointer;
+	box-shadow: 0 0 12px rgba(52, 254, 160, 0.3);
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+	box-shadow: 0 0 20px rgba(52, 254, 160, 0.5);
+	transform: scale(1.15);
+}
+input[type="range"]::-moz-range-thumb {
+	width: 18px;
+	height: 18px;
+	border: none;
+	border-radius: 50%;
+	background: #34fea0;
+	cursor: pointer;
+	box-shadow: 0 0 12px rgba(52, 254, 160, 0.3);
+}
