@@ -136,7 +136,7 @@
 			<p class="font-headline text-3xl font-bold mt-1">{formatCurrency(result.dailyAverage)}</p>
 			<p class="text-xs text-primary mt-2 flex items-center gap-1">
 				<span class="material-symbols-outlined text-sm">trending_up</span>
-				+80% return on wagered
+				+18% return on wagered
 			</p>
 		</div>
 		<div class="glass-card rounded-xl p-6">
