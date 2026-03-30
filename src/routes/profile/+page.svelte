@@ -182,11 +182,10 @@
 						</div>
 
 						{#if p.comingSoon}
-							<span class="text-xs text-on-surface-variant">Notify me</span>
+							<span class="text-xs text-on-surface-variant">Coming soon</span>
 						{:else}
 							<a
 								href={p.file}
-								download
 								class="bg-primary text-on-primary px-5 py-2 rounded-xl font-bold text-sm active:scale-[0.98] transition-all inline-flex items-center gap-1.5 shrink-0"
 							>
 								<span class="material-symbols-outlined text-base">download</span>
