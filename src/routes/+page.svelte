@@ -77,7 +77,7 @@
 		<div class="reveal">
 			<span class="font-headline text-2xl font-bold">$5-100 Bets</span>
 			<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-1">
-				Target $300-2400 Monthly
+				Target $60-500 Monthly
 			</p>
 		</div>
 		<div class="reveal">
