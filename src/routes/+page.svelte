@@ -59,7 +59,7 @@
 				<p class="text-xs uppercase tracking-widest text-on-surface-variant mb-1">Live Portfolio</p>
 				<div class="flex justify-between items-baseline">
 					<span class="font-headline text-2xl font-bold">Current PnL</span>
-					<span class="text-primary font-headline font-bold text-xl">+$2,481.50</span>
+					<span class="text-primary font-headline font-bold text-xl">+$248</span>
 				</div>
 				<div class="h-40 mt-4">
 					<PnlChart />
@@ -75,7 +75,7 @@
 			<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-1">Avg. Winrate</p>
 		</div>
 		<div class="reveal">
-			<span class="font-headline text-2xl font-bold">$5-50 Bets</span>
+			<span class="font-headline text-2xl font-bold">$5-100 Bets</span>
 			<p class="text-xs text-on-surface-variant uppercase tracking-widest mt-1">
 				Target $300-2400 Monthly
 			</p>

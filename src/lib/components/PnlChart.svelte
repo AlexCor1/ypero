@@ -18,7 +18,7 @@
 
 	// Demo PnL data — upward trend with realistic volatility
 	const labels = ['01 Jan', '04 Jan', '08 Jan', '11 Jan', '15 Jan', '18 Jan', '22 Jan', '25 Jan', 'Today'];
-	const data = [120, 280, 410, 380, 720, 950, 1180, 1640, 2481.5];
+	const data = [12, 28, 41, 38, 72, 95, 118, 164, 248];
 
 	onMount(() => {
 		const ctx = canvas.getContext('2d')!;
