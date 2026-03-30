@@ -30,11 +30,11 @@ function randomDailyPattern(target: number): number[] {
 
 /**
  * Calculates projected earnings from bet size alone.
- * Linear scaling: $10 → $500/mo, $100 → $5000/mo.
+ * Linear scaling: $10 → $50/mo, $100 → $500/mo.
  * Daily values are randomized on every call for a unique chart each time.
  */
 export function calculateProjection(betSize: number): SimulatorResult {
-	const monthlyTarget = betSize * 50;
+	const monthlyTarget = betSize * 5;
 
 	const pattern = randomDailyPattern(monthlyTarget);
 
