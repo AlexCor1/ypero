@@ -50,5 +50,6 @@ export const NAV_LINKS: NavLink[] = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Pricing', href: '/pricing' },
 	{ label: 'Simulator', href: '/simulator' },
+	{ label: 'Blog', href: '/blog' },
 	{ label: 'About & Contact', href: '/about' },
 ];
