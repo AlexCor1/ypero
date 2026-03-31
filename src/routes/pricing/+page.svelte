@@ -6,6 +6,7 @@
 
 	let loading = $state(false);
 	let error = $state('');
+	let videoZoomed = $state(false);
 
 	let paymentSuccess = $derived(page.url.searchParams.get('success') === 'true');
 	let paymentCanceled = $derived(page.url.searchParams.get('canceled') === 'true');
@@ -49,134 +50,188 @@
 	}
 </script>
 
+<svelte:window onkeydown={(e) => { if (e.key === 'Escape') videoZoomed = false; }} />
+
 <svelte:head>
 	<title>Pricing | Ypero</title>
 </svelte:head>
 
-<section class="relative max-w-7xl mx-auto px-6 pt-16 pb-24 text-center overflow-hidden">
-	<div class="float-orb float-orb-green w-[400px] h-[400px] -top-20 right-[-150px] opacity-50"></div>
-	<div class="float-orb float-orb-purple w-[350px] h-[350px] bottom-0 left-[-100px] opacity-40"></div>
-	<!-- Post-payment banners -->
-	{#if paymentSuccess || $isValidated}
-		<div class="max-w-lg mx-auto mb-8 bg-primary/10 rounded-xl p-5 flex items-center gap-4">
-			<span class="material-symbols-outlined text-primary text-3xl">check_circle</span>
-			<div class="text-left">
-				<p class="font-headline font-bold text-sm">Account Validated</p>
-				<p class="text-xs text-on-surface-variant mt-0.5">
-					{#if paymentSuccess}
-						Payment confirmed. Head to <a href="/profile" class="text-primary font-semibold hover:underline">your profile</a> to get started.
-					{:else}
-						You already have lifetime access. You're all set.
-					{/if}
-				</p>
+<!-- HERO: Centered, price-dominant -->
+<section class="relative overflow-hidden">
+	<div class="float-orb float-orb-green w-[350px] h-[350px] -top-16 left-1/2 -translate-x-1/2 opacity-40"></div>
+
+	<div class="max-w-3xl mx-auto px-6 pt-12 pb-6 text-center relative">
+
+		<!-- Banners -->
+		{#if paymentSuccess || $isValidated}
+			<div class="max-w-md mx-auto mb-6 bg-primary/10 rounded-xl p-4 flex items-center gap-3">
+				<span class="material-symbols-outlined text-primary text-2xl">check_circle</span>
+				<div class="text-left">
+					<p class="font-headline font-bold text-sm">Account Validated</p>
+					<p class="text-xs text-on-surface-variant">
+						{#if paymentSuccess}
+							Head to <a href="/profile" class="text-primary font-semibold hover:underline">your profile</a> to download the app.
+						{:else}
+							You already have lifetime access.
+						{/if}
+					</p>
+				</div>
 			</div>
-		</div>
-	{/if}
-
-	{#if paymentCanceled}
-		<div class="max-w-lg mx-auto mb-8 bg-error/10 rounded-xl p-5 flex items-center gap-4">
-			<span class="material-symbols-outlined text-error text-3xl">cancel</span>
-			<div class="text-left">
-				<p class="font-headline font-bold text-sm">Payment Canceled</p>
-				<p class="text-xs text-on-surface-variant mt-0.5">No charge was made. You can try again whenever you're ready.</p>
-			</div>
-		</div>
-	{/if}
-
-	{#if error}
-		<div class="max-w-lg mx-auto mb-8 bg-error-container/30 text-on-error-container text-sm rounded-lg p-3">
-			{error}
-		</div>
-	{/if}
-
-	<!-- Header -->
-	<div class="inline-flex items-center gap-2 bg-surface-container-low px-4 py-1.5 rounded-full mb-6">
-		<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-		<span class="text-xs font-label uppercase tracking-widest text-primary">Available Now</span>
-	</div>
-
-	<h1 class="font-headline text-4xl md:text-6xl font-bold tracking-tight">
-		Start Trading with <em class="kinetic-gradient not-italic">Precision</em>
-	</h1>
-	<p class="mt-4 text-on-surface-variant text-lg max-w-2xl mx-auto">
-		One payment. Lifetime access. No subscriptions, no hidden fees, no revenue share.
-		You keep 100% of your profits.
-	</p>
-
-	<!-- Pricing card -->
-	<div class="max-w-lg mx-auto mt-12 rounded-2xl p-8 md:p-10 bg-linear-to-b from-surface-container-high to-surface-container-low ghost-border reveal-scale" use:reveal>
-	<p class="text-xs uppercase tracking-[0.3em] text-on-surface-variant font-label">
-		Account Validation
-	</p>
-	<p class="font-headline text-6xl font-bold mt-2">$49.95</p>
-	<p class="text-sm uppercase tracking-widest text-primary font-bold mt-2">One-time Payment · Lifetime Access</p>
-
-	<!-- CTA (above features) -->
-	<div class="mt-8">
-		{#if $isValidated}
-			<a
-				href="/profile"
-				class="w-full bg-surface-container-highest text-primary py-3.5 rounded-xl font-bold text-lg flex items-center justify-center gap-2"
-			>
-				<span class="material-symbols-outlined">verified</span>
-					Account Validated — Go to Profile
-			</a>
-		{:else}
-			<button
-				onclick={handlePurchase}
-				disabled={loading}
-				class="w-full bg-primary text-on-primary py-3.5 rounded-xl font-bold active:scale-[0.98] transition-all text-lg disabled:opacity-50"
-				>
-				{#if loading}
-					<span class="flex items-center justify-center gap-2">
-						<span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>
-						Redirecting to payment...
-					</span>
-				{:else if !$isLoggedIn}
-					Create Account & Pay — $49.95
-				{:else}
-					Validate Account — $49.95
-				{/if}
-			</button>
 		{/if}
 
-			<div class="flex items-center justify-center gap-4 mt-4 text-xs text-on-surface-variant">
-				<span class="flex items-center gap-1">
-					<span class="material-symbols-outlined text-sm">lock</span>
-					Secure Checkout
-				</span>
-				<span class="flex items-center gap-1">
-					<span class="material-symbols-outlined text-sm">credit_card</span>
-					Visa, Mastercard, Amex
-				</span>
-				<span class="flex items-center gap-1">
-					<span class="material-symbols-outlined text-sm">block</span>
-					No Subscription
-				</span>
+		{#if paymentCanceled}
+			<div class="max-w-md mx-auto mb-6 bg-error/10 rounded-xl p-4 flex items-center gap-3">
+				<span class="material-symbols-outlined text-error text-2xl">cancel</span>
+				<p class="text-left text-xs text-on-surface-variant">Payment canceled. No charge was made.</p>
 			</div>
+		{/if}
+
+		{#if error}
+			<div class="max-w-md mx-auto mb-6 bg-error-container/30 text-on-error-container text-sm rounded-lg p-3">{error}</div>
+		{/if}
+
+		<!-- Price as the hero -->
+		<p class="text-xs uppercase tracking-[0.3em] text-on-surface-variant font-label">Lifetime Access</p>
+		<p class="font-headline text-7xl md:text-8xl font-bold mt-2 tracking-tight">$49<span class="text-primary">.95</span></p>
+		<p class="text-on-surface-variant mt-2 text-base">One payment. No subscription. You keep 100% of your profits.</p>
+
+		<!-- CTA -->
+		<div class="mt-6">
+			{#if $isValidated}
+				<a
+					href="/profile"
+					class="inline-flex items-center gap-2 bg-surface-container-highest text-primary px-10 py-3.5 rounded-xl font-bold text-lg"
+				>
+					<span class="material-symbols-outlined">verified</span>
+					Go to Profile
+				</a>
+			{:else}
+				<button
+					onclick={handlePurchase}
+					disabled={loading}
+					class="bg-primary text-on-primary px-10 py-3.5 rounded-xl font-bold active:scale-[0.98] transition-all text-lg disabled:opacity-50 hover:shadow-[0_0_30px_rgba(52,254,160,0.3)]"
+				>
+					{#if loading}
+						<span class="flex items-center gap-2">
+							<span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>
+							Redirecting...
+						</span>
+					{:else if !$isLoggedIn}
+						Get Started — $49.95
+					{:else}
+						Validate Account — $49.95
+					{/if}
+				</button>
+			{/if}
 		</div>
 
-		<!-- Separator -->
-		<div class="w-full h-px bg-outline-variant/15 my-6"></div>
+		<!-- Trust row -->
+		<div class="flex items-center justify-center gap-5 mt-4 text-xs text-on-surface-variant flex-wrap">
+			<span class="flex items-center gap-1">
+				<span class="material-symbols-outlined text-sm text-primary">lock</span>
+				Secure Checkout
+			</span>
+			<span class="flex items-center gap-1">
+				<span class="material-symbols-outlined text-sm">credit_card</span>
+				Visa, Mastercard, Amex
+			</span>
+			<span class="flex items-center gap-1">
+				<span class="material-symbols-outlined text-sm">block</span>
+				No Subscription
+			</span>
+		</div>
+	</div>
 
-		<!-- What's included (below CTA) -->
-		<div class="text-left space-y-4">
-			<p class="text-xs uppercase tracking-widest text-on-surface-variant font-label">What you get</p>
+	<!-- Video -->
+	<div class="max-w-2xl mx-auto px-6 pb-10">
+		<div class="relative mt-6">
+			<div class="absolute -inset-3 rounded-2xl pointer-events-none" style="background: radial-gradient(ellipse at 50% 50%, rgba(52,254,160,0.04) 0%, transparent 60%);"></div>
+			<div
+				class="relative rounded-xl overflow-hidden ghost-border cursor-pointer"
+				style="box-shadow: 0 6px 30px rgba(0,0,0,0.35);"
+				onclick={() => (videoZoomed = true)}
+				role="button"
+				tabindex="0"
+				onkeydown={(e) => { if (e.key === 'Enter') videoZoomed = true; }}
+			>
+				<video autoplay loop muted playsinline class="w-full h-auto block">
+					<source src="/showcase.mp4" type="video/mp4" />
+				</video>
+				<div class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black/20">
+					<span class="material-symbols-outlined text-white text-3xl">fullscreen</span>
+				</div>
+			</div>
+			<p class="text-center text-xs text-on-surface-variant mt-3 flex items-center justify-center gap-1.5">
+				<span class="material-symbols-outlined text-sm text-primary">play_circle</span>
+				Click to expand - Live Bot Demo
+			</p>
+		</div>
+	</div>
+</section>
 
+<!-- Fullscreen video overlay -->
+{#if videoZoomed}
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div
+		class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm cursor-pointer"
+		onclick={() => (videoZoomed = false)}
+		style="animation: fade-in 0.2s ease-out;"
+	>
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<div class="relative w-[90vw] max-w-5xl" onclick={(e) => e.stopPropagation()} role="dialog">
+			<button
+				onclick={() => (videoZoomed = false)}
+				class="absolute -top-10 right-0 text-on-surface-variant hover:text-white transition-colors"
+			>
+				<span class="material-symbols-outlined text-2xl">close</span>
+			</button>
+			<div class="rounded-xl overflow-hidden" style="box-shadow: 0 0 60px rgba(52,254,160,0.06);">
+				<video autoplay loop muted playsinline class="w-full h-auto block">
+					<source src="/showcase.mp4" type="video/mp4" />
+				</video>
+			</div>
+		</div>
+	</div>
+{/if}
+
+<!-- Compact stats bar -->
+<section class="py-5" style="border-top: 1px solid rgba(72,72,71,0.1); border-bottom: 1px solid rgba(72,72,71,0.1);">
+	<div class="max-w-3xl mx-auto px-6">
+		<div class="flex items-center justify-between gap-4 flex-wrap" use:reveal>
 			{#each [
-				{ icon: 'download', title: 'Full Bot Application', desc: 'Desktop app for Windows, macOS & Linux. Download instantly after payment.' },
-				{ icon: 'update', title: 'Lifetime Updates', desc: 'Every new version, strategy improvement, and market expansion — free, forever.' },
-				{ icon: 'key', title: 'Self-Custodial Trading', desc: 'The bot runs on your machine with your keys. We never touch your funds or private keys.' },
-				{ icon: 'speed', title: '15-Minute Execution Engine', desc: 'Algorithmically trades SOL up/down markets on Polymarket with an 85% historical win rate.' },
-				{ icon: 'notifications_active', title: '24/7 Telegram Alerts', desc: 'Real-time trade notifications, PnL updates, and risk alerts sent to your Telegram.' },
-				{ icon: 'support_agent', title: 'Premium Discord Support', desc: 'Direct access to the dev team. Setup help, strategy questions, troubleshooting.' },
+				{ value: '85%', label: 'Win Rate' },
+				{ value: '15m', label: 'Trade Cycles' },
+				{ value: '96/day', label: 'Opportunities' },
+				{ value: '100%', label: 'Self-Custodial' },
+			] as stat}
+				<div class="text-center flex-1 min-w-[70px] reveal">
+					<p class="font-headline text-xl md:text-2xl font-bold text-primary">{stat.value}</p>
+					<p class="text-[10px] md:text-xs text-on-surface-variant uppercase tracking-widest mt-0.5">{stat.label}</p>
+				</div>
+			{/each}
+		</div>
+	</div>
+</section>
+
+<!-- What you get -->
+<section class="py-14">
+	<div class="max-w-5xl mx-auto px-6">
+		<p class="text-xs uppercase tracking-[0.3em] text-primary font-label text-center mb-3">Included</p>
+		<h2 class="font-headline text-2xl md:text-3xl font-bold text-center mb-8">Everything you need</h2>
+
+		<div class="grid grid-cols-2 md:grid-cols-3 gap-4 reveal-stagger" use:reveal>
+			{#each [
+				{ icon: 'download', title: 'Desktop App', desc: 'Windows, Linux & macOS' },
+				{ icon: 'update', title: 'Lifetime Updates', desc: 'Every version, free forever' },
+				{ icon: 'key', title: 'Self-Custodial', desc: 'Your keys stay on your machine' },
+				{ icon: 'speed', title: '15m Engine', desc: '85% historical win rate' },
+				{ icon: 'notifications_active', title: 'Alerts', desc: 'Telegram trade notifications' },
+				{ icon: 'support_agent', title: 'Support', desc: 'Discord dev team access' },
 			] as item}
-				<div class="flex items-start gap-3 py-2">
-					<span class="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">{item.icon}</span>
-					<div>
-						<p class="text-sm font-semibold">{item.title}</p>
-						<p class="text-xs text-on-surface-variant mt-0.5 leading-relaxed">{item.desc}</p>
-					</div>
+				<div class="glass-card rounded-xl p-4 card-hover reveal">
+					<span class="material-symbols-outlined text-primary text-xl mb-2">{item.icon}</span>
+					<p class="text-sm font-semibold">{item.title}</p>
+					<p class="text-xs text-on-surface-variant mt-0.5">{item.desc}</p>
 				</div>
 			{/each}
 		</div>
@@ -184,89 +239,66 @@
 </section>
 
 <!-- How it works -->
-<section class="bg-surface-container-low py-20">
+<section class="bg-surface-container-low py-14">
 	<div class="max-w-4xl mx-auto px-6">
 		<p class="text-xs uppercase tracking-[0.3em] text-primary font-label text-center mb-3">How it works</p>
-		<h2 class="font-headline text-3xl font-bold text-center mb-12">Trading in 3 steps</h2>
+		<h2 class="font-headline text-2xl md:text-3xl font-bold text-center mb-10">Trading in 3 steps</h2>
 
 		<div class="grid md:grid-cols-3 gap-8 reveal-stagger" use:reveal>
 			{#each [
-				{ step: '01', icon: 'person_add', title: 'Create & Validate', desc: 'Sign up, verify your email, and complete the one-time payment. Takes under 2 minutes.' },
-				{ step: '02', icon: 'settings', title: 'Configure & Connect', desc: 'Download the bot, enter your Polymarket API keys, and set your preferred bet size ($5–$100).' },
-				{ step: '03', icon: 'rocket_launch', title: 'Launch & Profit', desc: 'Hit start. The bot executes trades every 15 minutes, 24/7. You monitor, it trades.' },
+				{ step: '01', icon: 'person_add', title: 'Create & Validate', desc: 'Sign up, verify your email, and complete the one-time payment.' },
+				{ step: '02', icon: 'settings', title: 'Configure & Connect', desc: 'Download the bot, enter your Polymarket API keys, set your bet size.' },
+				{ step: '03', icon: 'rocket_launch', title: 'Launch & Profit', desc: 'Hit start. The bot trades every 15 minutes, 24/7.' },
 			] as card}
 				<div class="text-center reveal">
-					<span class="font-headline text-5xl font-bold text-on-surface-variant">{card.step}</span>
-					<div class="w-14 h-14 rounded-xl bg-surface-container-highest flex items-center justify-center mx-auto mt-4 mb-4">
-						<span class="material-symbols-outlined text-primary text-2xl">{card.icon}</span>
+					<span class="font-headline text-4xl font-bold text-on-surface-variant/20">{card.step}</span>
+					<div class="w-12 h-12 rounded-xl bg-surface-container-highest flex items-center justify-center mx-auto mt-3 mb-3">
+						<span class="material-symbols-outlined text-primary text-xl">{card.icon}</span>
 					</div>
-					<h3 class="font-headline font-bold mb-2">{card.title}</h3>
-					<p class="text-sm text-on-surface-variant leading-relaxed">{card.desc}</p>
+					<h3 class="font-headline font-bold text-sm mb-1.5">{card.title}</h3>
+					<p class="text-xs text-on-surface-variant leading-relaxed">{card.desc}</p>
 				</div>
 			{/each}
 		</div>
 	</div>
 </section>
 
-<!-- Trust signals -->
-<section class="py-20">
-	<div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 reveal-stagger" use:reveal>
+<!-- FAQ -->
+<section class="py-14">
+	<div class="max-w-2xl mx-auto px-6">
+		<h2 class="font-headline text-2xl md:text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+
 		{#each [
-			{ icon: 'trending_up', value: '85%', label: 'Historical Win Rate', desc: 'Verified across 150k+ predictions on Polymarket SOL markets.' },
-			{ icon: 'schedule', value: '15m', label: 'Execution Cycles', desc: 'Trades every 15-minute window. 96 opportunities per day.' },
-			{ icon: 'shield', value: '100%', label: 'Self-Custodial', desc: 'Your keys, your wallet, your funds. We never have access.' },
-			{ icon: 'groups', value: '600+', label: 'Active Traders', desc: 'Growing community of traders using our execution engine.' },
-		] as stat}
-			<div class="glass-card rounded-xl p-6 text-center card-hover reveal">
-				<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center mx-auto mb-3">
-					<span class="material-symbols-outlined text-primary">{stat.icon}</span>
-				</div>
-				<p class="font-headline text-2xl font-bold text-primary">{stat.value}</p>
-				<p class="font-headline font-bold text-xs mt-1">{stat.label}</p>
-				<p class="text-xs text-on-surface-variant mt-2 leading-relaxed">{stat.desc}</p>
-			</div>
+			{ q: 'How fast can I set it up?', a: 'Under 5 minutes. Create an account, pay once, download the app, paste your Polymarket API keys, and hit start.' },
+			{ q: 'Is my capital safe?', a: 'Yes. The bot runs 100% locally on your machine. Your private keys never leave your device. We never have access to your funds.' },
+			{ q: 'Which markets does it trade?', a: 'SOL up/down 15-minute prediction markets on Polymarket. 96 trading opportunities per day.' },
+			{ q: 'How much can I make?', a: 'Results vary based on bet size and market conditions. Use our simulator to model projections for your setup.' },
+			{ q: 'Is there a subscription?', a: 'No. $49.95 once — lifetime access, all updates, premium support. No monthly fees, no revenue share.' },
+			{ q: 'Do I need a VPN?', a: 'Polymarket is restricted in some countries. If you\'re in a restricted region, you\'ll need a VPN to an allowed country.' },
+		] as faq}
+			<details class="group bg-surface-container rounded-xl mb-2">
+				<summary class="flex justify-between items-center cursor-pointer p-4 text-sm font-semibold">
+					{faq.q}
+					<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform text-lg">expand_more</span>
+				</summary>
+				<p class="px-4 pb-4 text-sm text-on-surface-variant leading-relaxed">{faq.a}</p>
+			</details>
 		{/each}
 	</div>
 </section>
 
-<!-- FAQ -->
-<section class="max-w-2xl mx-auto px-6 py-20">
-	<h2 class="font-headline text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
-
-	{#each [
-		{ q: 'How fast can I set it up?', a: 'Under 5 minutes. Create an account, pay once, download the app, paste your Polymarket API keys, and hit start. The bot begins trading on the next 15-minute cycle.' },
-		{ q: 'Is my capital safe?', a: 'Yes. The bot runs 100% locally on your machine. It signs transactions with your private keys stored on your device. We never have access to your funds, wallet, or keys.' },
-		{ q: 'Which markets does the bot trade?', a: 'It trades the "Will SOL go up/down in 15 minutes?" prediction markets on Polymarket. These markets resolve every 15 minutes, giving the bot 96 trading opportunities per day.' },
-		{ q: 'How much can I make?', a: 'Results vary based on your bet size and market conditions. With a $10 bet size, typical monthly returns are around $50. With $50, closer to $250. Use our simulator to model projections.' },
-		{ q: 'What if I need help setting it up?', a: 'Our Discord has an active support channel. The dev team responds quickly. We also include a step-by-step setup guide with the download.' },
-		{ q: 'Is there a subscription?', a: 'No. You pay $49.95 once and get lifetime access to the bot, all future updates, strategy improvements, and premium support. No monthly fees, no revenue share.' },
-		{ q: 'Do I need a VPN?', a: 'Polymarket is not available in all countries. If you are in a restricted region, you will need a VPN to an allowed country. The bot itself works from anywhere.' },
-	] as faq}
-		<details class="group bg-surface-container rounded-xl mb-3">
-			<summary class="flex justify-between items-center cursor-pointer p-5 text-sm font-semibold">
-				{faq.q}
-				<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">
-					expand_more
-				</span>
-			</summary>
-			<p class="px-5 pb-5 text-sm text-on-surface-variant leading-relaxed">{faq.a}</p>
-		</details>
-	{/each}
-</section>
-
 <!-- Final CTA -->
-<section class="max-w-4xl mx-auto px-6 pb-24">
-	<div class="rounded-2xl bg-linear-to-br from-surface-container-high to-surface-container-low p-10 md:p-14 text-center ghost-border">
-		<h2 class="font-headline text-3xl md:text-4xl font-bold">Still on the fence?</h2>
-		<p class="mt-4 text-on-surface-variant max-w-lg mx-auto">
-			Try the simulator first. See projected returns for your bet size, risk-free. 
-			When you're ready, the bot is one click away.
+<section class="bg-surface-container-low py-14">
+	<div class="max-w-3xl mx-auto px-6 text-center">
+		<h2 class="font-headline text-2xl md:text-3xl font-bold">Still exploring?</h2>
+		<p class="mt-3 text-on-surface-variant max-w-md mx-auto text-sm">
+			Try the simulator to see projected returns for your bet size. No account needed.
 		</p>
-		<div class="flex items-center justify-center gap-4 mt-8">
-			<a href="/simulator" class="bg-primary text-on-primary px-8 py-3 rounded-xl font-bold active:scale-[0.98] transition-all">
+		<div class="flex items-center justify-center gap-3 mt-6">
+			<a href="/simulator" class="bg-primary text-on-primary px-7 py-2.5 rounded-xl font-bold text-sm active:scale-[0.98] transition-all">
 				Try the Simulator
 			</a>
-			<a href="/about" class="bg-surface-container-highest/40 backdrop-blur-sm text-on-surface px-8 py-3 rounded-xl font-semibold ghost-border">
+			<a href="/about" class="bg-surface-container-highest/40 text-on-surface px-7 py-2.5 rounded-xl font-semibold text-sm ghost-border hover:bg-surface-bright transition-colors">
 				Meet the Team
 			</a>
 		</div>

@@ -428,3 +428,8 @@ input[type="range"]::-moz-range-thumb {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
+
+@keyframes fade-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
