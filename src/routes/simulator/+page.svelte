@@ -20,16 +20,17 @@
 		Simulation Engine v2.4
 	</p>
 	<h1 class="font-headline text-4xl md:text-6xl font-bold tracking-tight">
-		Predict Your <span class="kinetic-gradient">Alpha.</span>
+		Predict Your <span class="kinetic-gradient">Profits.</span>
 	</h1>
 	<p class="mt-4 text-on-surface-variant text-lg max-w-xl">
-		Adjust your parameters to visualize potential returns using our algorithmic execution engine.
-		Powered by a verified 85% historical win rate on Polymarket events.
+		Adjust your bet size to visualize potential returns using our bot.
+		Powered by a verified 85% historical win rate on Polymarket.
 	</p>
 </section>
 
 <section class="max-w-7xl mx-auto px-6 pb-24">
 	<div class="grid lg:grid-cols-[320px_1fr] gap-6">
+	
 		<!-- Controls panel -->
 		<div class="space-y-6">
 			<div class="glass-card rounded-xl p-6">
@@ -53,14 +54,14 @@
 					class="w-full accent-primary"
 				/>
 
-				<div class="mt-6 space-y-4">
+				<div class="mt-6">
 					<div class="flex justify-between items-center">
 						<span class="text-sm text-on-surface-variant">Win Rate</span>
 						<span class="text-sm font-bold text-primary">85%</span>
 					</div>
 					<div class="flex justify-between items-center">
 						<span class="text-sm text-on-surface-variant">Execution Speed</span>
-						<span class="text-sm font-bold">140ms</span>
+						<span class="text-sm font-bold">100 ms</span>
 					</div>
 					<div class="flex justify-between items-center">
 						<span class="text-sm text-on-surface-variant">Risk Profile</span>
@@ -71,23 +72,6 @@
 						</span>
 					</div>
 				</div>
-			</div>
-
-			<!-- Info card -->
-			<div class="glass-card rounded-xl p-6">
-				<div class="flex items-start justify-between">
-					<div>
-						<h3 class="font-headline font-bold text-sm">Automated Execution</h3>
-						<p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
-							Our bot captures micro-inefficiencies in prediction markets before they normalize.
-						</p>
-					</div>
-					<span class="material-symbols-outlined text-on-surface-variant/30 text-3xl">bolt</span>
-				</div>
-				<a href="/about" class="text-xs font-bold text-primary mt-4 inline-flex items-center gap-1">
-					LEARN MORE
-					<span class="material-symbols-outlined text-sm">arrow_forward</span>
-				</a>
 			</div>
 		</div>
 
@@ -105,9 +89,6 @@
 				<div class="flex gap-2">
 					<span class="text-xs bg-primary/15 text-primary px-3 py-1 rounded-full font-bold">
 						LIVE DATA
-					</span>
-					<span class="text-xs bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full">
-						UTC-0
 					</span>
 				</div>
 			</div>
