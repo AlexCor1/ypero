@@ -8,6 +8,6 @@ export const stripe = new Stripe(STRIPE_SECRET_KEY, {
 // One-time payment product config
 export const PRODUCT = {
 	name: 'Ypero — Lifetime Access',
-	price: 4995, // $49.95 in cents
+	price: 4495, // $44.95 in cents (10% off $49.95)
 	currency: 'usd'
 } as const;

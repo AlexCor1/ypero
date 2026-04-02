@@ -47,7 +47,7 @@
 		<div>
 			<h2 class="font-headline font-bold text-on-surface text-lg mb-3">4. Account Validation & Payment</h2>
 			<p>
-				Access to the Bot requires a one-time account validation payment of $49.95 USD.
+				Access to the Bot requires a one-time account validation payment of $44.95 USD.
 				This payment grants you lifetime access to the current and all future versions of
 				the Bot, including updates and premium support.
 			</p>
@@ -171,7 +171,7 @@
 			</p>
 			<p class="mt-2">
 				Our total liability for any claim arising from the Service shall not exceed the
-				amount you paid for account validation ($49.95 USD).
+				amount you paid for account validation ($44.95 USD).
 			</p>
 		</div>
 

@@ -27,13 +27,13 @@
 		{
 			name: 'Windows',
 			icon: 'desktop_windows',
-			file: 'https://github.com/AlexCor1/ypero/releases/download/windows/ypero-windows.zip',
+			file: '/downloads/ypero-desktop-windows.zip',
 			detail: 'Windows 10/11 · x64'
 		},
 		{
 			name: 'Linux',
 			icon: 'terminal',
-			file: 'https://github.com/AlexCor1/ypero/releases/download/linux/ypero-linux.zip',
+			file: '/downloads/ypero-desktop-linux.zip',
 			detail: 'Debian (.deb) & RPM'
 		},
 		{
@@ -182,10 +182,11 @@
 						</div>
 
 						{#if p.comingSoon}
-							<span class="text-xs text-on-surface-variant">Coming soon</span>
+							<span class="text-xs text-on-surface-variant">Notify me</span>
 						{:else}
 							<a
 								href={p.file}
+								download
 								class="bg-primary text-on-primary px-5 py-2 rounded-xl font-bold text-sm active:scale-[0.98] transition-all inline-flex items-center gap-1.5 shrink-0"
 							>
 								<span class="material-symbols-outlined text-base">download</span>
@@ -321,7 +322,7 @@
 					href="/pricing"
 					class="bg-primary text-on-primary px-8 py-3 rounded-xl font-bold active:scale-[0.98] transition-all inline-flex items-center gap-2"
 				>
-					Validate Account — $49.95
+					Validate Account — $44.95
 					<span class="material-symbols-outlined text-lg">arrow_forward</span>
 				</a>
 			</div>

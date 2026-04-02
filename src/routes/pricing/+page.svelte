@@ -91,8 +91,15 @@
 		{/if}
 
 		<!-- Price as the hero -->
+		<div class="inline-flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full mb-3">
+			<span class="material-symbols-outlined text-primary text-sm">local_offer</span>
+			<span class="text-xs font-bold text-primary uppercase tracking-widest">10% Off — Limited Time</span>
+		</div>
 		<p class="text-xs uppercase tracking-[0.3em] text-on-surface-variant font-label">Lifetime Access</p>
-		<p class="font-headline text-7xl md:text-8xl font-bold mt-2 tracking-tight">$49<span class="text-primary">.95</span></p>
+		<div class="mt-2 flex items-baseline justify-center gap-3">
+			<span class="font-headline text-3xl md:text-4xl font-bold text-on-surface-variant/40 line-through">$49.95</span>
+			<span class="font-headline text-7xl md:text-8xl font-bold tracking-tight">$44<span class="text-primary">.95</span></span>
+		</div>
 		<p class="text-on-surface-variant mt-2 text-base">One payment. No subscription. You keep 100% of your profits.</p>
 
 		<!-- CTA -->
@@ -117,9 +124,9 @@
 							Redirecting...
 						</span>
 					{:else if !$isLoggedIn}
-						Get Started — $49.95
+						Get Started — $44.95
 					{:else}
-						Validate Account — $49.95
+						Validate Account — $44.95
 					{/if}
 				</button>
 			{/if}
@@ -273,7 +280,7 @@
 			{ q: 'Is my capital safe?', a: 'Yes. The bot runs 100% locally on your machine. Your private keys never leave your device. We never have access to your funds.' },
 			{ q: 'Which markets does it trade?', a: 'SOL up/down 15-minute prediction markets on Polymarket. 96 trading opportunities per day.' },
 			{ q: 'How much can I make?', a: 'Results vary based on bet size and market conditions. Use our simulator to model projections for your setup.' },
-			{ q: 'Is there a subscription?', a: 'No. $49.95 once — lifetime access, all updates, premium support. No monthly fees, no revenue share.' },
+			{ q: 'Is there a subscription?', a: 'No. $44.95 once — lifetime access, all updates, premium support. No monthly fees, no revenue share.' },
 			{ q: 'Do I need a VPN?', a: 'Polymarket is restricted in some countries. If you\'re in a restricted region, you\'ll need a VPN to an allowed country.' },
 		] as faq}
 			<details class="group bg-surface-container rounded-xl mb-2">
